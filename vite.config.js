@@ -9,16 +9,13 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  base: './',
   build: {
     outDir: 'dist',
     sourcemap: false,
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
+    minify: 'esbuild',
+    target: 'es2015',
+    cssTarget: 'chrome80',
     rollupOptions: {
       output: {
         manualChunks: {
@@ -31,14 +28,13 @@ export default defineConfig({
         entryFileNames: 'assets/[name]-[hash].js',
       },
     },
-    chunkSizeWarningLimit: 500,
+    chunkSizeWarningLimit: 600,
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'framer-motion', 'lucide-react', 'i18next', 'react-i18next'],
   },
   server: {
     port: 5173,
-    open: true,
   },
   preview: {
     port: 4173,
