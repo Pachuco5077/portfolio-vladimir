@@ -1,0 +1,27 @@
+{
+  "name": "Vladimir De La Guardia - Portfolio",
+  "short_name": "VDG Portfolio",
+  "description": "Portfolio profesional de Vladimir De La Guardia - Software Engineer & Integration Consultant",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0e17",
+  "theme_color": "#0f62fe",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "professional", "technology"],
+  "lang": "es",
+  "dir": "ltr"
+}

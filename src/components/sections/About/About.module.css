@@ -1,0 +1,97 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.description {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+.stat {
+  text-align: center;
+}
+
+.statValue {
+  display: block;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+}
+
+@media (min-width: 768px) {
+  .statValue {
+    font-size: 2.25rem;
+  }
+}
+
+.statLabel {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .cardsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.highlightCard {
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .highlightCard {
+    text-align: left;
+  }
+}
+
+.highlightIcon {
+  width: 2rem;
+  height: 2rem;
+  color: var(--accent-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.highlightTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.highlightDescription {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}

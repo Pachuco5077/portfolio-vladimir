@@ -1,0 +1,173 @@
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.timelineItem {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timelineItem::before {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--border-subtle);
+}
+
+.timelineItem:last-child::before {
+  display: none;
+}
+
+.timelineMarker {
+  position: absolute;
+  left: 0;
+  top: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.markerDot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: var(--accent-primary);
+  border: 2px solid var(--bg-card);
+}
+
+.jobCard {
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.jobCard:hover {
+  border-color: var(--border-active);
+}
+
+.jobHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .jobHeader {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.jobMain {
+  flex: 1;
+}
+
+.jobTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.jobRole {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.chevron {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--text-muted);
+  transition: transform 0.2s ease;
+}
+
+.expanded {
+  transform: rotate(180deg);
+}
+
+.jobCompany {
+  color: var(--accent-primary);
+  font-weight: 500;
+}
+
+.jobProject {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.jobMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.jobMetaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.jobDetails {
+  overflow: hidden;
+}
+
+.highlights {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.highlightsTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.highlightsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.highlightItem {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.625;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.highlightItem::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.625rem;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background-color: var(--accent-secondary);
+}
+
+.techStack {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
