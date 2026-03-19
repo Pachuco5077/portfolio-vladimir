@@ -35,10 +35,16 @@
 }
 
 .projectTitle {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .projectTitle {
+    font-size: 1.25rem;
+  }
 }
 
 .projectDescription {
@@ -46,6 +52,7 @@
   font-size: 0.875rem;
   flex: 1;
   margin-bottom: 1rem;
+  line-height: 1.6;
 }
 
 .projectTech {
@@ -53,4 +60,37 @@
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: auto;
+}
+
+.projectLinks {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.projectLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--accent-primary);
+  color: white;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  min-height: 40px;
+}
+
+.projectLink:hover {
+  background-color: rgba(15, 98, 254, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(15, 98, 254, 0.3);
+}
+
+.projectLink:active {
+  transform: translateY(0);
 }

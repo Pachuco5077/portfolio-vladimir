@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Download, Mail, ChevronDown } from 'lucide-react';
-import { useLanguage } from '@/context';
-import { profile } from '@/data/profile';
-import { Button } from '@/components/ui';
-import styles from './Hero.module.css';
+import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { Download, Mail, ChevronDown } from 'lucide-react'
+import { useLanguage } from '@/context'
+import { Button } from '@/components/ui'
+import styles from './Hero.module.css'
 
 const terminalLines = [
   { type: 'input', text: 'whoami' },
@@ -16,50 +15,61 @@ const terminalLines = [
   { type: 'output', text: '  "experience": "4+ años"' },
   { type: 'output', text: '}' },
   { type: 'input', text: './contact.sh', cursor: true },
-];
+]
 
 export function Hero() {
-  const { t } = useLanguage();
-  const [currentLine, setCurrentLine] = useState(0);
-  const [currentChar, setCurrentChar] = useState(0);
-  const [showCursor, setShowCursor] = useState(true);
+  const { t } = useLanguage()
+  const [currentLine, setCurrentLine] = useState(0)
+  const [currentChar, setCurrentChar] = useState(0)
+  const [showCursor, setShowCursor] = useState(true)
 
   useEffect(() => {
-    const line = terminalLines[currentLine];
-    if (!line) return;
+    const line = terminalLines[currentLine]
+    if (!line) return
 
     if (line.type === 'input') {
       if (currentChar < line.text.length) {
-        const timer = setTimeout(() => setCurrentChar((c) => c + 1), 50);
-        return () => clearTimeout(timer);
+        const timer = setTimeout(() => setCurrentChar(c => c + 1), 50)
+        return () => clearTimeout(timer)
       } else {
         const timer = setTimeout(() => {
-          setCurrentLine((l) => l + 1);
-          setCurrentChar(0);
-        }, 300);
-        return () => clearTimeout(timer);
+          setCurrentLine(l => l + 1)
+          setCurrentChar(0)
+        }, 300)
+        return () => clearTimeout(timer)
       }
     } else if (line.type === 'output' && line.cursor) {
-      setShowCursor(true);
+      setShowCursor(true)
     } else {
-      const timer = setTimeout(() => {
-        setCurrentLine((l) => l + 1);
-        setCurrentChar(0);
-      }, line.pause ? 500 : 100);
-      return () => clearTimeout(timer);
+      const timer = setTimeout(
+        () => {
+          setCurrentLine(l => l + 1)
+          setCurrentChar(0)
+        },
+        line.pause ? 500 : 100
+      )
+      return () => clearTimeout(timer)
     }
-  }, [currentLine, currentChar]);
+  }, [currentLine, currentChar])
 
   useEffect(() => {
     const cursorTimer = setInterval(() => {
-      setShowCursor((s) => !s);
-    }, 500);
-    return () => clearInterval(cursorTimer);
-  }, []);
+      setShowCursor(s => !s)
+    }, 500)
+    return () => clearInterval(cursorTimer)
+  }, [])
 
   const scrollToAbout = () => {
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-  };
+    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  const handleDownloadCV = () => {
+    const subject = encodeURIComponent('Solicitud de CV - Portfolio Vladimir De La Guardia')
+    const body = encodeURIComponent(
+      'Hola Vladimir,\n\nMe gustaría recibir una copia de tu CV.\n\nSaludos'
+    )
+    window.location.href = `mailto:pachuco5077@gmail.com?subject=${subject}&body=${body}`
+  }
 
   return (
     <section id="hero" className={styles.hero}>
@@ -87,7 +97,10 @@ export function Hero() {
 
             <div className={styles.terminalBody}>
               {terminalLines.slice(0, currentLine).map((line, i) => (
-                <div key={i} className={line.type === 'input' ? styles.inputLine : styles.outputLine}>
+                <div
+                  key={i}
+                  className={line.type === 'input' ? styles.inputLine : styles.outputLine}
+                >
                   {line.type === 'input' && <span className={styles.prompt}>&gt;</span>}
                   <span>{line.text}</span>
                 </div>
@@ -106,7 +119,7 @@ export function Hero() {
           </div>
 
           <div className={styles.ctas}>
-            <Button variant="primary" icon={<Download size={18} />}>
+            <Button variant="primary" icon={<Download size={18} />} onClick={handleDownloadCV}>
               {t('hero.cta.cv')}
             </Button>
             <Button variant="secondary" icon={<Mail size={18} />} onClick={scrollToAbout}>
@@ -115,7 +128,7 @@ export function Hero() {
           </div>
 
           <div className={styles.techBadges}>
-            {['IBM API Connect', 'Spring Boot', 'React', 'IBM MQ', 'PostgreSQL'].map((tech) => (
+            {['IBM API Connect', 'Spring Boot', 'React', 'IBM MQ', 'PostgreSQL'].map(tech => (
               <span key={tech} className={styles.techBadge}>
                 {tech}
               </span>
@@ -129,10 +142,11 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
+          aria-label="Scroll to about section"
         >
           <ChevronDown className={styles.scrollIcon} />
         </motion.button>
       </div>
     </section>
-  );
+  )
 }

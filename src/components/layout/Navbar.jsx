@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Sun, Moon, Globe } from 'lucide-react'
 import { useTheme, useLanguage } from '@/context'
@@ -29,7 +29,7 @@ export function Navbar() {
         const element = document.getElementById(section)
         if (element) {
           const rect = element.getBoundingClientRect()
-          return rect.top <= 100 && rect.bottom >= 100
+          return rect.top <= 150 && rect.bottom >= 150
         }
         return false
       })
@@ -44,31 +44,56 @@ export function Navbar() {
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      document.body.style.width = '100%'
     } else {
       document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
     }
     return () => {
       document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
     }
   }, [isMobileMenuOpen])
 
-  const handleNavClick = (e, href) => {
+  const handleNavClick = useCallback((e, href) => {
     e.preventDefault()
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
+
     setIsMobileMenuOpen(false)
-  }
+
+    setTimeout(() => {
+      const element = document.querySelector(href)
+      if (element) {
+        const headerOffset = 80
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        })
+      }
+    }, 150)
+  }, [])
 
   const handleLanguageToggle = () => {
     changeLanguage(lang === 'es' ? 'en' : 'es')
   }
 
+  const handleLogoClick = e => {
+    e.preventDefault()
+    setIsMobileMenuOpen(false)
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 150)
+  }
+
   return (
     <nav className={cn(styles.navbar, isScrolled && styles.scrolled)}>
       <div className={styles.container}>
-        <a href="#" className={styles.logo} onClick={e => handleNavClick(e, '#hero')}>
+        <a href="#" className={styles.logo} onClick={handleLogoClick}>
           <span className={styles.logoIcon}>&gt;</span>
           <span className={styles.logoText}>VDG</span>
         </a>
